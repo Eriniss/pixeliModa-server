@@ -1,16 +1,6 @@
-import express, { Request, Response } from 'express';
-import dotenv from 'dotenv';
+import app from './app';
 
-dotenv.config();
-
-const app = express();
-const port = process.env.PIXELIMODA_SERVER_PORT || 5000;
-
-app.set('port', port);
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, pixeliModa!');
-});
+const port = app.get('port') || process.env.PIXELIMODA_SERVER_PORT || 8080;
 
 app.listen(port, () => {
   console.log(`${port} port's hot!`);
