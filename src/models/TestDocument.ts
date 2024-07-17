@@ -11,5 +11,5 @@ const TestDocumentSchema: Schema = new Schema({
   },
 });
 
-const TestDocument = mongoose.model<ITestDocument>('TestDocument', TestDocumentSchema);
+const TestDocument = mongoose.model<ITestDocument>('Test', TestDocumentSchema, 'test');
 export default TestDocument;
