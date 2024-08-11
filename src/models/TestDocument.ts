@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 /**
- * @typedef {Object} ITestDocument
+ * @type {Object} ITestDocument
  * @description Mongoose Document 타입을 확장하여 'test' 필드를 가진 타입을 정의합니다.
  */
 export type ITestDocument = Document & {
