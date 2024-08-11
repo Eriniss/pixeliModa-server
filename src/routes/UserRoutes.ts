@@ -1,9 +1,13 @@
 import { Router } from 'express';
-import { getUserInfo } from '../controllers/User';
+import { getUser } from '../controllers';
+import { createUser } from '../controllers';
 
 const router = Router();
 
-// 테스트 메시지를 출력하는 라우터
-router.get('/profile/:id', getUserInfo);
+// 프로필 조회
+router.get('/profile/:id', getUser);
+
+// 회원가입
+router.post('/register', createUser);
 
 export default router;
