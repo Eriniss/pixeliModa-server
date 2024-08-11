@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
 import testRoutes from './routes/TestRoutes';
+import userRoutes from './routes/UserRoutes';
 
 dotenv.config();
 // DB 연결
@@ -15,6 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // 테스트 라우트 설정 -> 테스트
 app.use('/api/test', testRoutes);
+
+// 유저 라우트 설정
+app.use('/users', userRoutes);
 
 // 루트(홈)) 라우팅 설정 -> 테스트
 app.get('/', (req: Request, res: Response) => {

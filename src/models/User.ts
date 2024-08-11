@@ -99,7 +99,21 @@ const UserSchema: Schema = new Schema(
     },
   },
   {
-    timestamps: true, // 자동으로 createdAt과 updatedAt 필드를 관리합니다.
+    timestamps: true,
+    toJSON: {
+      // password 필드를 제외하는 transform 함수 설정
+      transform: (doc, ret) => {
+        delete ret.password;
+        return ret;
+      },
+    },
+    toObject: {
+      // toObject 메서드 사용 시에도 password 필드를 제외
+      transform: (doc, ret) => {
+        delete ret.password;
+        return ret;
+      },
+    },
   }
 );
 
@@ -108,4 +122,4 @@ const UserSchema: Schema = new Schema(
  * @type {mongoose.Model<UserDocument>}
  * @description 'User' 컬렉션에 대한 Mongoose 모델을 정의하고 생성합니다.
  */
-export const UserModel = mongoose.model<UserDocument>('User', UserSchema);
+export const UserModel = mongoose.model<UserDocument>('User', UserSchema, 'User');
