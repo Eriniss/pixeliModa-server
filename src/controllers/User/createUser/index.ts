@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { Request, Response } from 'express';
 import { UserModel } from '../../../models';
-import { getHashedPassword } from '../../../modules/bcrypt/getHashedPassword';
+import { getHashedPassword } from '../../../modules';
 
 dotenv.config();
 
@@ -35,8 +35,8 @@ export const createUser = async (
       return;
     }
 
-    // 비밀번호 해싱
-    const saltCount = parseInt(process.env.SALT_COUNT || '10', 10);
+    // 비밀번호 해싱 (기본값 10)
+    const saltCount = parseInt(process.env.SALT_COUNT || '10');
     const hashedPassword = await getHashedPassword(password, saltCount);
 
     // 새로운 사용자 생성
