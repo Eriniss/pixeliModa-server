@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { Request, Response } from 'express';
 import { UserModel } from '../../../models';
-import { getHashPassword } from '../../../modules/bcrypt/hash';
+import { getHashedPassword } from '../../../modules/bcrypt/getHashedPassword';
 
 dotenv.config();
 
@@ -12,20 +12,32 @@ dotenv.config();
  * @param {Response} res - Express 응답 객체
  * @returns {Promise<void>} 비동기 함수로서 Promise를 반환하며, 완료되면 아무 값도 반환하지 않습니다.
  */
-export const createUser = async (req: Request, res: Response): Promise<void> => {
+export const createUser = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     // 요청 본문에서 사용자 데이터를 추출합니다.
     const { nickname, email, password, role, theme, profile } = req.body;
 
     // 사용자 데이터 검증 (간단한 예시로 필수 필드만 검증)
-    if (!nickname || !email || !password || !role || !theme || !profile || !profile.name || !profile.bio) {
+    if (
+      !nickname ||
+      !email ||
+      !password ||
+      !role ||
+      !theme ||
+      !profile ||
+      !profile.name ||
+      !profile.bio
+    ) {
       res.status(400).send('Missing required fields');
       return;
     }
 
     // 비밀번호 해싱
     const saltCount = parseInt(process.env.SALT_COUNT || '10', 10);
-    const hashedPassword = await getHashPassword(password, saltCount);
+    const hashedPassword = await getHashedPassword(password, saltCount);
 
     // 새로운 사용자 생성
     const newUser = new UserModel({

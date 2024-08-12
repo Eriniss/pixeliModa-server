@@ -6,7 +6,10 @@ import bcrypt from 'bcrypt';
  * @param {number} [saltCount=10] - salt의 반복 횟수 (기본값은 10)
  * @returns {Promise<string>} 해싱된 비밀번호
  */
-export const getHashPassword = async (pass: string, saltCount: number = 10): Promise<string> => {
+export const getHashedPassword = async (
+  pass: string,
+  saltCount: number = 10
+): Promise<string> => {
   try {
     // salt를 생성합니다.
     const salt = await bcrypt.genSalt(saltCount);
