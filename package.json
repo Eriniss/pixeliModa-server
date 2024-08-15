@@ -1,6 +1,10 @@
 {
   "name": "pixeli_moda",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  },
   "description": "PixeliModa 블로그 플랫폼",
   "main": "dist/server.js",
   "scripts": {
