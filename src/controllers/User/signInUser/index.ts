@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { UserModel } from '../../../models';
+import { createJwt } from '../../../modules/';
+import { compareHashedPassword } from '../../../modules/';
 
 /**
  * @function signInUser
@@ -29,24 +30,15 @@ export const signInUser = async (req: Request, res: Response): Promise<void> => 
     }
 
     // 비밀번호 비교
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await compareHashedPassword({ user, password });
     if (!isPasswordValid) {
       res.status(401).send('Invalid password');
       return;
     }
 
     // JWT 토큰 생성
-    const token = jwt.sign(
-      {
-        id: user._id,
-        nickname: user.nickname,
-        role: user.role,
-      },
-      process.env.JWT_SECRET || 'jwt_secret_key', // 환경변수로부터 JWT 시크릿 키를 가져옵니다.
-      {
-        expiresIn: process.env.JWT_EXPIRE_TIME || '24h', // 토큰 유효 기간 설정
-      }
-    );
+    const tokenData = { _id: user._id, email: user.email, role: user.role };
+    const token = createJwt(tokenData);
 
     // 로그인 성공 응답
     res.status(200).json({
