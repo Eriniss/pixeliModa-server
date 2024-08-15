@@ -4,13 +4,13 @@ import jwt from 'jsonwebtoken';
 import { UserModel } from '../../../models';
 
 /**
- * @function loginUser
+ * @function signInUser
  * @description 이메일과 비밀번호를 사용하여 로그인하고 JWT 토큰을 반환합니다.
  * @param {Request} req - Express 요청 객체
  * @param {Response} res - Express 응답 객체
  * @returns {Promise<void>} 비동기 함수로서 Promise를 반환하며, 완료되면 아무 값도 반환하지 않습니다.
  */
-export const loginUser = async (req: Request, res: Response): Promise<void> => {
+export const signInUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
 
@@ -42,7 +42,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         nickname: user.nickname,
         role: user.role,
       },
-      process.env.JWT_SECRET || 'default_secret_key', // 환경변수로부터 JWT 시크릿 키를 가져옵니다.
+      process.env.JWT_SECRET || 'jwt_secret_key', // 환경변수로부터 JWT 시크릿 키를 가져옵니다.
       {
         expiresIn: process.env.JWT_EXPIRE_TIME || '24h', // 토큰 유효 기간 설정
       }
