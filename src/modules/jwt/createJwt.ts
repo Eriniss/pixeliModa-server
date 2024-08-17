@@ -4,7 +4,7 @@ import { UserDocument } from '../../models/User';
 type CreateJwtType = Pick<UserDocument, '_id' | 'email' | 'role'>;
 
 /**
- * @desc json web token(jwt)를 생성합니다.
+ * @desc json web token(jwt)를 생성
  * @param {CreateJwtType} props jwt에 담길 User 정보
  * @return {string} 문자열 형태의 jwt
  */

@@ -15,7 +15,7 @@ import mongoose, { Document, Schema, Types } from 'mongoose';
 
 /**
  * @type {Object} UserDocument
- * @description Mongoose Document 타입을 확장하여 'User' 필드를 가진 타입을 정의합니다.
+ * @description Mongoose Document 타입을 확장하여 'User' 필드를 가진 타입을 정의
  * @property {Types.ObjectId} _id - 객체 고유 ID
  * @property {string} nickname - 유저 닉네임 (필수)
  * @property {string} email - 유저 이메일 (필수)
@@ -48,7 +48,7 @@ export type UserDocument = Document & {
 /**
  * @constant UserSchema
  * @type {Schema}
- * @description 'User' 컬렉션을 위한 Mongoose 스키마를 정의합니다.
+ * @description 'User' 컬렉션을 위한 Mongoose 스키마를 정의
  */
 const UserSchema: Schema = new Schema(
   {
@@ -120,6 +120,6 @@ const UserSchema: Schema = new Schema(
 /**
  * @constant UserModel
  * @type {mongoose.Model<UserDocument>}
- * @description 'User' 컬렉션에 대한 Mongoose 모델을 정의하고 생성합니다.
+ * @description 'User' 컬렉션에 대한 Mongoose 모델을 정의하고 생성
  */
 export const UserModel = mongoose.model<UserDocument>('User', UserSchema, 'User');

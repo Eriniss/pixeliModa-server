@@ -7,30 +7,18 @@ dotenv.config();
 
 /**
  * @function createUser
- * @description 새로운 사용자를 'User' 컬렉션에 추가합니다. 패스워드는 해싱하여 저장합니다.
+ * @description 새로운 사용자를 'User' 컬렉션에 추가, 패스워드는 해싱하여 저장
  * @param {Request} req - Express 요청 객체
  * @param {Response} res - Express 응답 객체
- * @returns {Promise<void>} 비동기 함수로서 Promise를 반환하며, 완료되면 아무 값도 반환하지 않습니다.
+ * @returns {Promise<void>} 비동기 함수로서 Promise를 반환하며, 완료되면 아무 값도 반환하지 않음
  */
-export const createUser = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const createUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    // 요청 본문에서 사용자 데이터를 추출합니다.
+    // 요청 본문에서 사용자 데이터를 추출
     const { nickname, email, password, role, theme, profile } = req.body;
 
     // 사용자 데이터 검증 (간단한 예시로 필수 필드만 검증)
-    if (
-      !nickname ||
-      !email ||
-      !password ||
-      !role ||
-      !theme ||
-      !profile ||
-      !profile.name ||
-      !profile.bio
-    ) {
+    if (!nickname || !email || !password || !role || !theme || !profile || !profile.name || !profile.bio) {
       res.status(400).send('Missing required fields');
       return;
     }
