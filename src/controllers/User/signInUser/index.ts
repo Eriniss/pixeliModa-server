@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
 import { UserModel } from '../../../models';
 import { createJwt } from '../../../modules/';
 import { compareHashedPassword } from '../../../modules/';
@@ -44,14 +43,6 @@ export const signInUser = async (req: Request, res: Response): Promise<void> => 
     res.status(200).json({
       message: 'Login successful',
       token,
-      user: {
-        id: user._id,
-        nickname: user.nickname,
-        email: user.email,
-        role: user.role,
-        theme: user.theme,
-        profile: user.profile,
-      },
     });
   } catch (error) {
     console.error('Error logging in user:', error);

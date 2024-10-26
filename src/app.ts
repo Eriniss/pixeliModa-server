@@ -18,7 +18,7 @@ const app = express();
  * @allowedHeaders 허용할 헤더를 지정
  */
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: '*',
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
 };
