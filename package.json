@@ -6,9 +6,9 @@
     "npm": ">=10"
   },
   "description": "PixeliModa 블로그 플랫폼",
-  "main": "dist/server.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node src/server.ts",
     "dev": "nodemon src/server.ts",
     "build": "tsc"
   },
