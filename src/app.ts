@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
 import userRoutes from './routes/UserRoutes';
+// import blogRoutes from './routes/BlogRoutes';
 import cors from 'cors';
 
 dotenv.config();
@@ -32,6 +33,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // 유저 라우트 설정
 app.use('/users', userRoutes);
+
+// 블로그 라우트 설정
+// app.use('/blog', blogRoutes);
 
 // 루트(홈) 라우팅 설정 -> 테스트
 app.get('/', (req: Request, res: Response) => {
