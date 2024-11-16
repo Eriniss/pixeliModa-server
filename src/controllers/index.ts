@@ -1,2 +1,2 @@
 export { getUser, createUser, signInUser } from './User';
-export { createPost, getPost, deletePost } from './Blog';
+export { createPost, getPost, updatePost, deletePost } from './Blog';
