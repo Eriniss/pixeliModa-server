@@ -17,7 +17,7 @@ type Author = {
  * @property {string} title - 블로그 제목 (필수)
  * @property {string|null} content - 블로그 본문 내용
  * @property {Author} author - 작성자 정보 (필수)
- * @property {string[]|null} tag - 카태고리 태그
+ * @property {string[]|null} tags - 카태고리 태그
  * @property {Date} createdAt - 프로필 생성 시각 (필수)
  * @property {Date|null} updatedAt - 프로필 업데이트 시각(없을 시 null)
  */
@@ -26,7 +26,7 @@ export type BlogDocument = Document & {
   title: string;
   content?: string;
   author: Author;
-  tag?: string[];
+  tags?: string[];
   createdAt?: Date;
   updatedAt?: Date;
 };
@@ -56,7 +56,7 @@ const BlogSchema: Schema = new Schema(
         required: true,
       },
     },
-    tag: {
+    tags: {
       type: [String],
       default: null,
     },

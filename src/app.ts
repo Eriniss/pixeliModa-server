@@ -19,7 +19,7 @@ const app = express();
  * @allowedHeaders 허용할 헤더를 지정
  */
 const corsOptions = {
-  origin: '*',
+  origin: '*', // 모두 허용
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
 };
