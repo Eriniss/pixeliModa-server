@@ -14,7 +14,7 @@ export const getPost = async (req: Request, res: Response): Promise<void> => {
     if (post) {
       res.json(post);
     } else {
-      res.status(404).send('User not found');
+      res.status(404).send('Post not found');
     }
   } catch (error) {
     res.status(500).send('Server error');

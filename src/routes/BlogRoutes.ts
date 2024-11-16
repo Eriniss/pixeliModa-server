@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createPost, getPost } from '../controllers/index';
+import { createPost, getPost, deletePost } from '../controllers/index';
 
 const router = Router();
 
@@ -8,5 +8,8 @@ router.post('/post', createPost);
 
 // 블로그글 조회
 router.get('/post/:id', getPost);
+
+// 블로그글 삭제
+router.delete('/post/:id', deletePost);
 
 export default router;
