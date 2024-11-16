@@ -15,20 +15,20 @@ type Author = {
  * @description Mongoose Document 타입을 확장하여 'Blog' 필드를 가진 타입을 정의
  * @property {Types.ObjectId} _id - 객체 고유 ID
  * @property {string} title - 블로그 제목 (필수)
- * @property {string} content - 블로그 본문 내용
+ * @property {string|null} content - 블로그 본문 내용
  * @property {Author} author - 작성자 정보 (필수)
- * @property {string[]} tag - 카태고리 태그
+ * @property {string[]|null} tag - 카태고리 태그
  * @property {Date} createdAt - 프로필 생성 시각 (필수)
- * @property {Date|null} updatedAt - 프로필 업데이트 시각(없을 시 undefined)
+ * @property {Date|null} updatedAt - 프로필 업데이트 시각(없을 시 null)
  */
 export type BlogDocument = Document & {
   _id: Types.ObjectId;
   title: string;
-  content: string | null;
+  content?: string;
   author: Author;
-  tag: string[] | null;
-  createdAt: Date;
-  updatedAt: Date | null;
+  tag?: string[];
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 /**
@@ -52,7 +52,7 @@ const BlogSchema: Schema = new Schema(
         required: true,
       },
       userNickname: {
-        data: String,
+        type: String,
         required: true,
       },
     },
