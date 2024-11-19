@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createPost, getPost, updatePost, deletePost } from '../controllers/index';
+import { createPost, getPost, updatePost, deletePost, getPostsPerPage } from '../controllers/index';
 
 const router = Router();
 
@@ -8,6 +8,7 @@ router.post('/post', createPost);
 
 // 블로그글 조회
 router.get('/post/:id', getPost);
+router.get('/posts', getPostsPerPage);
 
 // 블로그글 업데이트
 router.post('/post/update/:id', updatePost);
